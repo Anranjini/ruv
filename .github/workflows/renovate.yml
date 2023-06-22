@@ -1,0 +1,21 @@
+name: Renovate
+
+on:
+  schedule:
+    - cron: "*/1 * * * *"
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Renovate
+        uses: renovatebot/renovate-action@v30
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          extends: "config:base"
+          baseBranches: "main"
+          packageFiles: "pom.xml"
